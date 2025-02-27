@@ -1,0 +1,115 @@
+/* You can add global styles to this file, and also import other style files */
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: #f5f5f5;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+/* Global Container */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  
+  @media (max-width: 480px) {
+    padding: 12px;
+  }
+  
+  @media (min-width: 481px) and (max-width: 768px) {
+    padding: 16px;
+  }
+  
+  @media (min-width: 769px) and (max-width: 1024px) {
+    padding: 24px;
+  }
+  
+  @media (min-width: 1025px) {
+    padding: 32px;
+  }
+}
+
+/* For tighter container in mobile views */
+.container-sm {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 16px;
+  box-sizing: border-box;
+  
+  @media (max-width: 480px) {
+    padding: 12px;
+  }
+}
+
+/* Character Status Colors */
+.alive {
+  color: #2e7d32 !important;
+}
+
+.dead {
+  color: #c62828 !important;
+}
+
+.unknown {
+  color: #616161 !important;
+}
+
+/* Responsive Breakpoints */
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .container {
+    padding: 0 24px;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .container {
+    padding: 0 32px;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .container {
+    padding: 0 48px;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .container {
+    padding: 0 64px;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-in;
+}
+
+/* Material Design Overrides */
+.mat-mdc-card {
+  border-radius: 8px !important;
+}
+
+.mdc-button {
+  border-radius: 24px !important;
+}
+
+.mat-mdc-table {
+  background-color: transparent !important;
+}

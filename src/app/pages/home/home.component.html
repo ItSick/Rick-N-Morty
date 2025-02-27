@@ -1,0 +1,130 @@
+<div class="container">
+  <header class="page-header">
+    <h1>Characters Page</h1>
+    
+    <div class="page-info">
+      <span class="character-count">Showing {{ filteredCharacters.length }} characters</span>
+      <span class="page-count" *ngIf="currentPage > 1">Page {{ currentPage - 1 }}</span>
+    </div>
+    
+    <div class="mobile-friendly-controls">
+      <div class="filters">
+        <mat-form-field appearance="outline" class="search-field">
+          <mat-label>Search by name</mat-label>
+          <input matInput [formControl]="nameFilter" placeholder="Enter character name">
+          <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+        
+        <mat-form-field appearance="outline" class="status-field">
+          <mat-label>Filter by status</mat-label>
+          <mat-select [formControl]="statusFilter">
+            <mat-option *ngFor="let option of statusOptions" [value]="option.value">
+              {{option.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      
+      <div class="view-toggle">
+        <mat-button-toggle-group [value]="viewMode">
+          <mat-button-toggle value="grid" (click)="toggleView('grid')">
+            <mat-icon>grid_view</mat-icon>
+          </mat-button-toggle>
+          <mat-button-toggle value="list" (click)="toggleView('list')">
+            <mat-icon>view_list</mat-icon>
+          </mat-button-toggle>
+        </mat-button-toggle-group>
+      </div>
+    </div>
+  </header>
+  
+  <main>
+    <!-- Grid View -->
+    <div *ngIf="viewMode === 'grid'" class="characters-grid">
+      <div class="grid-container" [style.grid-template-columns]="'repeat(' + calculateColumns() + ', 1fr)'">
+        <app-character-card *ngFor="let character of filteredCharacters" [character]="character"></app-character-card>
+      </div>
+      
+      <!-- Scroll Trigger Element -->
+      <div appInfiniteScroll (scrolled)="onScroll()" class="scroll-trigger"></div>
+    </div>
+    
+    <!-- List View -->
+    <div *ngIf="viewMode === 'list'" class="characters-list">
+      <table mat-table [dataSource]="filteredCharacters" class="mat-elevation-z2">
+        <!-- ID Column -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef [style.width]="getColumnWidth('id')"> ID </th>
+          <td mat-cell *matCellDef="let character"> {{character.id}} </td>
+        </ng-container>
+        
+        <!-- Image Column -->
+        <ng-container matColumnDef="image">
+          <th mat-header-cell *matHeaderCellDef [style.width]="getColumnWidth('image')"> Image </th>
+          <td mat-cell *matCellDef="let character">
+            <img class="table-image" [src]="character.image" [alt]="character.name">
+          </td>
+        </ng-container>
+        
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef [style.width]="getColumnWidth('name')"> Name </th>
+          <td mat-cell *matCellDef="let character"> {{character.name}} </td>
+        </ng-container>
+        
+        <!-- Status Column -->
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef [style.width]="getColumnWidth('status')"> Status </th>
+          <td mat-cell *matCellDef="let character">
+            <span class="status-chip" [ngClass]="character.status.toLowerCase()">
+              {{character.status}}
+            </span>
+          </td>
+        </ng-container>
+        
+        <!-- Species Column -->
+        <ng-container matColumnDef="species">
+          <th mat-header-cell *matHeaderCellDef [style.width]="getColumnWidth('species')"> Species </th>
+          <td mat-cell *matCellDef="let character"> {{character.species}} </td>
+        </ng-container>
+        
+        <!-- Type Column -->
+        <ng-container matColumnDef="type">
+          <th mat-header-cell *matHeaderCellDef [style.width]="getColumnWidth('type')"> Type </th>
+          <td mat-cell *matCellDef="let character"> {{character.type || 'N/A'}} </td>
+        </ng-container>
+        
+        <!-- Gender Column -->
+        <ng-container matColumnDef="gender">
+          <th mat-header-cell *matHeaderCellDef [style.width]="getColumnWidth('gender')"> Gender </th>
+          <td mat-cell *matCellDef="let character"> {{character.gender}} </td>
+        </ng-container>
+        
+        <!-- Actions Column -->
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef [style.width]="getColumnWidth('actions')"> Actions </th>
+          <td mat-cell *matCellDef="let character">
+            <button mat-icon-button color="primary" [routerLink]="['/character', character.id]">
+              <mat-icon>visibility</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+        
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      
+      <!-- Scroll Trigger Element for List View -->
+      <div appInfiniteScroll (scrolled)="onScroll()" class="scroll-trigger"></div>
+    </div>
+    
+    <!-- Loading Indicator -->
+    <app-loading-indicator *ngIf="isLoading" message="Loading next batch of characters..."></app-loading-indicator>
+    
+    <!-- No Results Message -->
+    <div *ngIf="filteredCharacters.length === 0 && !isLoading" class="no-results">
+      <mat-icon>sentiment_very_dissatisfied</mat-icon>
+      <p>No characters found. Try different search criteria.</p>
+    </div>
+  </main>
+</div>

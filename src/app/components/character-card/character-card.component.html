@@ -1,0 +1,10 @@
+<mat-card class="character-card" (click)="viewCharacterDetails()">
+    <div class="image-container">
+      <img mat-card-image [src]="character.image" [alt]="character.name">
+      <div [class]="getStatusClass()" [matTooltip]="character.status"></div>
+    </div>
+    <mat-card-content>
+      <h2>{{character.name}}</h2>
+      <p>{{character.species}} • {{character.gender}}</p>
+    </mat-card-content>
+  </mat-card>

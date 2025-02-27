@@ -1,0 +1,72 @@
+<div class="container">
+    <header class="page-header">
+      <h1>Rick and Morty Episodes</h1>
+      
+      <div class="character-search">
+        <h2>Search Characters</h2>
+        <div class="search-bar">
+          <mat-form-field appearance="outline" class="search-field">
+            <mat-label>Search characters by name</mat-label>
+            <input matInput [formControl]="searchQuery" placeholder="Enter character name">
+            <button *ngIf="searchQuery.value" matSuffix mat-icon-button aria-label="Clear" (click)="clearSearch()">
+              <mat-icon>close</mat-icon>
+            </button>
+            <mat-icon matSuffix *ngIf="!searchQuery.value">search</mat-icon>
+          </mat-form-field>
+        </div>
+        
+        <div *ngIf="isLoadingCharacters" class="characters-loading">
+          <app-loading-indicator message="Searching for characters..."></app-loading-indicator>
+        </div>
+        
+        <div *ngIf="charactersError" class="characters-error">
+          <mat-icon color="warn">error_outline</mat-icon>
+          <p>{{ charactersError }}</p>
+        </div>
+        
+        <div *ngIf="characters.length > 0" class="characters-results">
+          <div class="characters-grid">
+            <mat-card *ngFor="let character of characters" class="character-card" [routerLink]="['/character', character.id]">
+              <img mat-card-image [src]="character.image" [alt]="character.name">
+              <mat-card-content>
+                <h3>{{ character.name }}</h3>
+                <p>{{ character.species }} • {{ character.status }}</p>
+              </mat-card-content>
+            </mat-card>
+          </div>
+        </div>
+      </div>
+    </header>
+    
+    <main>
+      <h2>Episode List (Randomized)</h2>
+      
+      <div *ngIf="isLoadingEpisodes" class="episodes-loading">
+        <app-loading-indicator message="Loading episodes..."></app-loading-indicator>
+      </div>
+      
+      <div *ngIf="episodesError" class="episodes-error">
+        <mat-icon color="warn">error_outline</mat-icon>
+        <p>{{ episodesError }}</p>
+        <button mat-raised-button color="primary" (click)="loadEpisodes()">Try Again</button>
+      </div>
+      
+      <div *ngIf="episodes.length > 0" class="episodes-list">
+        <mat-card *ngFor="let episode of episodes" class="episode-card">
+          <mat-card-content>
+            <div class="episode-header">
+              <h3 class="episode-title">{{ episode.name }}</h3>
+              <span class="episode-code">{{ episode.episode }}</span>
+            </div>
+            <div class="episode-details">
+              <p class="episode-airdate"><strong>Air Date:</strong> {{ episode.air_date }}</p>
+              <p class="episode-characters"><strong>Characters:</strong> {{ episode.characters.length }}</p>
+            </div>
+            <div class="episode-description">
+              <p>{{ getEpisodeCode(episode.episode) }}</p>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </main>
+  </div>
