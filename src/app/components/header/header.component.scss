@@ -2,10 +2,10 @@
   position: sticky;
   top: 0;
   z-index: 1000;
-  min-height: 100px; /* Added minimum height */
+  min-height: 100px; 
   
   @media (max-width: 600px) {
-    min-height: 100px; /* Ensure minimum height on mobile too */
+    min-height: 100px; 
   }
   
   .header-content {
@@ -46,7 +46,7 @@
     
     @media (max-width: 600px) {
       margin-top: 4px;
-      margin-bottom: 8px; /* Added margin at the bottom for better spacing */
+      margin-bottom: 8px;
     }
     
     a {
