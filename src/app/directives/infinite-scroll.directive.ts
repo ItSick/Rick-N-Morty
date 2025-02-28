@@ -8,9 +8,9 @@ export class InfiniteScrollDirective implements OnInit, OnDestroy {
   @Output() scrolled = new EventEmitter<void>();
 
   private observer: IntersectionObserver | undefined;
-  private scrollThreshold = 200; // pixels from the bottom of the page to trigger load
+  private scrollThreshold = 200; 
   private scrollCooldown = false;
-  private cooldownTime = 1000; // ms to wait between scroll events
+  private cooldownTime = 1000; 
 
   constructor(private elementRef: ElementRef) {}
 
@@ -24,7 +24,7 @@ export class InfiniteScrollDirective implements OnInit, OnDestroy {
 
   private setupIntersectionObserver() {
     const options = {
-      rootMargin: '0px 0px 200px 0px' // Trigger when element is 200px from viewport bottom
+      rootMargin: '0px 0px 200px 0px' 
     };
 
     this.observer = new IntersectionObserver((entries) => {
@@ -40,7 +40,6 @@ export class InfiniteScrollDirective implements OnInit, OnDestroy {
   }
 
   private setupScrollListener() {
-    // Fallback for browsers without IntersectionObserver
     window.addEventListener('scroll', this.onWindowScroll.bind(this));
   }
 
@@ -57,7 +56,6 @@ export class InfiniteScrollDirective implements OnInit, OnDestroy {
     );
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
 
-    // Load more when user is near bottom of page
     if (documentHeight - (scrollTop + windowHeight) <= this.scrollThreshold) {
       console.log('Scroll threshold reached via scroll event');
       this.triggerScrollEvent();
@@ -68,7 +66,6 @@ export class InfiniteScrollDirective implements OnInit, OnDestroy {
     this.scrolled.emit();
     this.scrollCooldown = true;
     
-    // Prevent rapid firing of scroll events
     setTimeout(() => {
       this.scrollCooldown = false;
     }, this.cooldownTime);

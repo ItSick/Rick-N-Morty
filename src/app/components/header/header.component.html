@@ -1,17 +1,18 @@
 <mat-toolbar color="primary" class="header">
-    <div class="header-content">
-      <a routerLink="/" class="logo">
-        <span class="title">Rick and Morty App</span>
+  <div class="header-content">
+    <a routerLink="/" class="logo">
+      <span class="title">Rick and Morty Explorer</span>
+    </a>
+    <nav class="navigation">
+      <a mat-button routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        <mat-icon>people</mat-icon>
+        <span class="nav-label">Characters</span>
       </a>
-      <nav class="navigation">
-        <a mat-button routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-          <mat-icon>people</mat-icon>
-          <span class="nav-label">Characters</span>
-        </a>
-        <a mat-button routerLink="/episodes" routerLinkActive="active">
-          <mat-icon>movie</mat-icon>
-          <span class="nav-label">Episodes</span>
-        </a>
-      </nav>
-    </div>
-  </mat-toolbar>
+      <a mat-button routerLink="/episodes" routerLinkActive="active">
+        <mat-icon>movie</mat-icon>
+        <span class="nav-label">Episodes</span>
+      </a>
+      <app-theme-toggle></app-theme-toggle>
+    </nav>
+  </div>
+</mat-toolbar>

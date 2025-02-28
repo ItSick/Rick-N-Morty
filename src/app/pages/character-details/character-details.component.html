@@ -1,18 +1,15 @@
 <div class="container">
-    <!-- Loading State -->
     <div *ngIf="isLoading" class="loading-container">
       <mat-spinner></mat-spinner>
       <p>Loading character details...</p>
     </div>
     
-    <!-- Error State -->
     <div *ngIf="error" class="error-container">
       <mat-icon color="warn">error</mat-icon>
       <h2>{{ error }}</h2>
       <button mat-raised-button color="primary" (click)="goBack()">Go Back</button>
     </div>
     
-    <!-- Character Details -->
     <div *ngIf="character && !isLoading" class="character-details">
       <div class="back-button-container">
         <button mat-button (click)="goBack()">

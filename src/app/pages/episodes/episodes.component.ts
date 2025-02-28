@@ -93,7 +93,6 @@ export class EpisodesComponent implements OnInit {
     
     this.apiService.getAllEpisodes().subscribe({
       next: (response: EpisodesResponse) => {
-        // Get all episodes and randomize them
         this.episodes = this.shuffleArray([...response.results]);
         this.isLoadingEpisodes = false;
       },
@@ -127,7 +126,6 @@ export class EpisodesComponent implements OnInit {
     });
   }
   
-  // Fisher-Yates shuffle algorithm
   shuffleArray<T>(array: T[]): T[] {
     const newArray = [...array];
     for (let i = newArray.length - 1; i > 0; i--) {

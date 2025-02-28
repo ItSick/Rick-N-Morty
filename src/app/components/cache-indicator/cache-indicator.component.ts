@@ -65,23 +65,19 @@ export class CacheIndicatorComponent implements OnInit {
   }
   
   private showCacheIndicator(isHit: boolean): void {
-    // Clear any existing timeout
     if (this.hideTimeout) {
       clearTimeout(this.hideTimeout);
     }
     
-    // Show the indicator
     this.isHit = isHit;
     this.showIndicator = true;
     
-    // Show snackbar message
     this.snackBar.open(
       isHit ? 'Data loaded from cache' : 'Data loaded from API', 
       'Dismiss', 
       { duration: 2000 }
     );
     
-    // Hide the indicator after a delay
     this.hideTimeout = setTimeout(() => {
       this.showIndicator = false;
     }, 3000);

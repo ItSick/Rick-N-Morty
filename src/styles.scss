@@ -1,15 +1,63 @@
-/* You can add global styles to this file, and also import other style files */
 @import '@angular/material/prebuilt-themes/indigo-pink.css';
+
+
+:root {
+  --background-color: #f5f5f5;
+  --card-background: #ffffff;
+  --card-text-color: rgba(0, 0, 0, 0.87);
+  --secondary-text-color: rgba(0, 0, 0, 0.6);
+  --border-color: rgba(0, 0, 0, 0.12);
+  --primary-color: #1976d2;
+}
+
+[data-theme="dark"] {
+  --background-color: #121212;
+  --card-background: #1e1e1e;
+  --card-text-color: rgba(255, 255, 255, 0.87);
+  --secondary-text-color: rgba(255, 255, 255, 0.6);
+  --border-color: rgba(255, 255, 255, 0.12);
+  --primary-color: #64b5f6;
+}
 
 html, body {
   height: 100%;
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
-  background-color: #f5f5f5;
-  color: rgba(0, 0, 0, 0.87);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Global Container */
+body {
+  background-color: var(--background-color);
+  color: var(--card-text-color);
+}
+
+
+.dark-theme {
+  .mat-mdc-card {
+    background-color: var(--card-background);
+    color: var(--card-text-color);
+  }
+  
+  .footer {
+    background-color: #1e1e1e;
+    
+    p, span {
+      color: rgba(255, 255, 255, 0.7);
+    }
+  }
+  
+  .character-card {
+    h2 {
+      color: var(--card-text-color);
+    }
+    
+    p {
+      color: var(--secondary-text-color);
+    }
+  }
+}
+
+
 .container {
   width: 100%;
   max-width: 1200px;
@@ -33,83 +81,50 @@ html, body {
   }
 }
 
-/* For tighter container in mobile views */
-.container-sm {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 16px;
-  box-sizing: border-box;
-  
-  @media (max-width: 480px) {
-    padding: 12px;
-  }
-}
 
-/* Character Status Colors */
-.alive {
-  color: #2e7d32 !important;
-}
-
-.dead {
-  color: #c62828 !important;
-}
-
-.unknown {
-  color: #616161 !important;
-}
-
-/* Responsive Breakpoints */
-/* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) {
-  .container {
-    padding: 0 24px;
-  }
-}
-
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {
-  .container {
-    padding: 0 32px;
-  }
-}
-
-/* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px) {
-  .container {
-    padding: 0 48px;
-  }
-}
-
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1200px) {
-  .container {
-    padding: 0 64px;
-  }
-}
-
-/* Animations */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-.fade-in {
-  animation: fadeIn 0.3s ease-in;
-}
-
-/* Material Design Overrides */
 .mat-mdc-card {
-  border-radius: 8px !important;
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.mdc-button {
-  border-radius: 24px !important;
+
+.theme-debug {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  z-index: 1000;
 }
 
-.mat-mdc-table {
-  background-color: transparent !important;
+.dark-theme {
+  
+
+  
+  .filters .mat-mdc-form-field {
+    .mdc-notched-outline__leading,
+    .mdc-notched-outline__notch,
+    .mdc-notched-outline__trailing {
+      
+      border-color: #9D00FF !important;
+      border-width: 1px !important;
+    }
+    
+    
+    .mat-mdc-form-field-label {
+      color: #ff5252 !important;
+    }
+    
+    
+    &.mat-focused {
+      .mdc-notched-outline__leading,
+      .mdc-notched-outline__notch,
+      .mdc-notched-outline__trailing {
+        border-color: #800020 !important;
+        border-width: 2px !important;
+      }
+    }
+  }
 }

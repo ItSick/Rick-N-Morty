@@ -2,10 +2,12 @@
   position: sticky;
   top: 0;
   z-index: 1000;
-  min-height: 100px; 
+  min-height: 100px;
+  background-color: #1976d2;
+  color: white;
   
   @media (max-width: 600px) {
-    min-height: 100px; 
+    min-height: 100px;
   }
   
   .header-content {
@@ -43,6 +45,7 @@
   
   .navigation {
     display: flex;
+    align-items: center;
     
     @media (max-width: 600px) {
       margin-top: 4px;
@@ -52,6 +55,8 @@
     a {
       display: flex;
       align-items: center;
+      color: white;
+      margin-right: 8px;
       
       mat-icon {
         margin-right: 4px;

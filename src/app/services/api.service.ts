@@ -45,8 +45,6 @@ export class ApiService {
   }
 
   getAllEpisodes(): Observable<EpisodeResponse> {
-    // For simplicity, let's just get the first page of episodes
-    // In a production app, you'd want to implement pagination
     return this.http.get<EpisodeResponse>(`${this.baseUrl}/episode`);
   }
 

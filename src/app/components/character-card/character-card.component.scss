@@ -57,6 +57,7 @@
   mat-card-content {
     flex-grow: 1;
     padding: 16px;
+    background-color: var(--card-background);
     
     h2 {
       margin: 0 0 8px;
@@ -65,6 +66,7 @@
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
+      color: var(--card-text-color);
       
       @media (max-width: 480px) {
         font-size: 16px;
@@ -73,7 +75,7 @@
     
     p {
       margin: 0;
-      color: rgba(0, 0, 0, 0.6);
+      color: var(--secondary-text-color);
       font-size: 14px;
       
       @media (max-width: 480px) {
