@@ -11,7 +11,7 @@
 git clone https://github.com/your-username/rick-morty-app.git
 ```
 
-2. Navigate to the project directory:
+2. Navigate to the project directory (if nedded):
 ```bash
 cd rick-morty-app
 ```
@@ -19,6 +19,11 @@ cd rick-morty-app
 3. Install Node modules:
 ```bash
 npm install
+```
+
+4. start the application:
+```bash
+npm run start
 ```
 
 ## Features
@@ -32,6 +37,11 @@ npm install
 - Episodes page
 - Mobile-first design approach
 
+## Missing features (for missing time and knowledge reasons) 
+
+- Unit Tests
+- Chashing - implemnted as a service but not in use
+
 ## API
 
-This application uses the [Rick and Morty API](https://rickandmortyapi.com/).
+ Application uses the [Rick and Morty API](https://rickandmortyapi.com/).
