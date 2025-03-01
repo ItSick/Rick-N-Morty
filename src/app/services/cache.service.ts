@@ -20,7 +20,7 @@ export class CacheService {
   set<T>(key: string, data: T, ttl: number = this.DEFAULT_TTL): void {
     const expiry = Date.now() + ttl;
     this.cache.set(key, { data, expiry });
-    console.log(`Cache: Set '${key}'`);
+    console.log(`Set '${key}'`);
   }
 
 
@@ -28,22 +28,22 @@ export class CacheService {
     const item = this.cache.get(key);
     
     if (!item) {
-      console.log(`Cache: Miss '${key}'`);
+      console.log(`'${key}' is missing`);
       return null;
     }
     
     if (Date.now() > item.expiry) {
-      console.log(`Cache: Expired '${key}'`);
+      console.log(`'${key}' expired`);
       this.cache.delete(key);
       return null;
     }
     
-    console.log(`Cache: Hit '${key}'`);
+    console.log(`get key: '${key}'`);
     return item.data as T;
   }
 
 
-  has(key: string): boolean {
+  isCached(key: string): boolean {
     const item = this.cache.get(key);
     if (!item) return false;
     
@@ -58,13 +58,13 @@ export class CacheService {
 
   remove(key: string): void {
     this.cache.delete(key);
-    console.log(`Cache: Removed '${key}'`);
+    console.log(`'${key}' removed`);
   }
 
 
   clear(): void {
     this.cache.clear();
-    console.log('Cache: Cleared all items');
+    console.log('cleared all items');
   }
 
 
@@ -80,7 +80,7 @@ export class CacheService {
     });
     
     if (expiredCount > 0) {
-      console.log(`Cache: Cleaned ${expiredCount} expired items`);
+      console.log(`cleaned ${expiredCount} expired items`);
     }
   }
 }
