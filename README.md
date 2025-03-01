@@ -1,4 +1,4 @@
-# Rick and Morty Explorer - Angular Application
+# Rick and Morty - Angular Application
 
 ## Prerequisites
 - Node.js (v18 or later)
