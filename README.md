@@ -6,7 +6,7 @@
 
 ## Installation
 
-1. Clone or download:
+1. Clone (or ZIP download):
 ```bash
 git clone https://github.com/your-username/rick-morty-app.git
 ```
