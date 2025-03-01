@@ -21,7 +21,6 @@ export class AppComponent implements OnInit {
   constructor(private themeService: ThemeService) {}
   
   ngOnInit(): void {
-    
     console.log('Current theme:', this.themeService.theme());
   }
 }

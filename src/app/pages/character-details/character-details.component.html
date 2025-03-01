@@ -71,9 +71,10 @@
             <div class="episode-count">
               Appeared in {{ character.episode.length }} episode(s)
             </div>
+            <p style="color: red;">Click the episode number to see the episode details as JSON</p>
             <div class="episode-ids">
               <div class="episode-chip" *ngFor="let episode of character.episode">
-                {{ getEpisodeNumber(episode) }}
+                <a href="{{ episode }}" target="_blank">{{ getEpisodeNumber(episode) }}</a>
               </div>
             </div>
           </div>

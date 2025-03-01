@@ -47,8 +47,4 @@ export class ApiService {
   getAllEpisodes(): Observable<EpisodeResponse> {
     return this.http.get<EpisodeResponse>(`${this.baseUrl}/episode`);
   }
-
-  getEpisodeById(id: number): Observable<Episode> {
-    return this.http.get<Episode>(`${this.baseUrl}/episode/${id}`);
-  }
 }

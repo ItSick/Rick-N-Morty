@@ -7,17 +7,17 @@ export const routes: Routes = [
   { 
     path: '', 
     component: HomeComponent,
-    title: 'Rick and Morty Explorer - Characters' 
+    title: 'Rick&Morty Characters' 
   },
   { 
     path: 'character/:id', 
     component: CharacterDetailsComponent,
-    title: 'Character Details'
+    title: 'Rick&Morty Character Details'
   },
   {
     path: 'episodes',
     component: EpisodesComponent,
-    title: 'Rick and Morty Episodes'
+    title: 'Rick&MortyEpisodes'
   },
   { 
     path: '**', 

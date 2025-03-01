@@ -48,7 +48,7 @@ export class HomeComponent implements OnInit {
   isLoading = false;
   currentPage = 1;
   hasNextPage = true;
-  viewMode = 'grid'; // 'grid' or 'list'
+  viewMode = 'grid';
   nextPageUrl: string | null = null;
   
   nameFilter = new FormControl('');
@@ -87,7 +87,6 @@ export class HomeComponent implements OnInit {
     const name = this.nameFilter.value || '';
     const status = this.statusFilter.value || '';
     
-    // Use next page URL if available, otherwise use page number
     if (this.nextPageUrl) {
       console.log(`Loading next page from URL: ${this.nextPageUrl}`);
       this.apiService.getNextPage(this.nextPageUrl).subscribe({
@@ -104,11 +103,9 @@ export class HomeComponent implements OnInit {
   }
   
   handleResponse(response: CharacterResponse): void {
-    // Add the new batch of characters to our existing array
     this.characters = [...this.characters, ...response.results];
     this.filteredCharacters = this.characters;
     
-    // Update pagination information
     this.nextPageUrl = response.info.next;
     this.hasNextPage = !!this.nextPageUrl;
     this.currentPage++;
@@ -123,7 +120,6 @@ export class HomeComponent implements OnInit {
     console.error('Error fetching characters:', error);
     this.isLoading = false;
     
-    // If error is due to no results
     if (error.status === 404) {
       this.characters = [];
       this.filteredCharacters = [];
