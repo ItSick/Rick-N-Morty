@@ -128,7 +128,7 @@ export class HomeComponent implements OnInit {
   }
   
   onScroll(): void {
-    console.log('Scroll event detected! Loading more characters...');
+    console.log('scroll detected! Loading more characters...');
     this.loadCharacters();
   }
   

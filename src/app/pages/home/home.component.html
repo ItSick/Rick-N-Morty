@@ -111,7 +111,7 @@
       <div appInfiniteScroll (scrolled)="onScroll()" class="scroll-trigger"></div>
     </div>
     
-    <app-loading-indicator *ngIf="isLoading" message="Loading next batch of characters..."></app-loading-indicator>
+    <app-loading-indicator *ngIf="isLoading" message="Loading more characters..."></app-loading-indicator>
     
     <div *ngIf="filteredCharacters.length === 0 && !isLoading" class="no-results">
       <mat-icon>sentiment_very_dissatisfied</mat-icon>
