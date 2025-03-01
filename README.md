@@ -11,7 +11,7 @@
 git clone https://github.com/your-username/rick-morty-app.git
 ```
 
-2. Navigate to the project directory (if nedded):
+2. Navigate to the project directory (OPTIONAL  - if needed):
 ```bash
 cd rick-morty-app
 ```
@@ -40,7 +40,7 @@ npm run start
 ## Missing features (for missing time and knowledge reasons) 
 
 - Unit Tests
-- Chashing - implemnted as a service but not in use
+- Cashing - implemented as a service but not in use
 
 ## API
 
