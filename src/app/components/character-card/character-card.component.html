@@ -1,7 +1,7 @@
 <mat-card class="character-card" (click)="viewCharacterDetails()">
   <div class="image-container">
     <div class="image-wrapper">
-      <img [src]="character.image" [alt]="character.name" styel="width: 300px; height: 300px;;">
+      <img [src]="character.image" [alt]="character.name" style="width: 300px !important; height: 300px !important;">
     </div>
     <div [class]="getStatusClass()" [matTooltip]="character.status"></div>
   </div>
