@@ -14,16 +14,7 @@ import { ThemeService } from '../../services/theme.service';
     MatIconModule,
     MatTooltipModule
   ],
-  template: `
-    <button 
-      mat-icon-button
-      [matTooltip]="currentTheme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'"
-      aria-label="Toggle theme"
-      (click)="toggleTheme()"
-      class="theme-toggle-button">
-      <mat-icon>{{ currentTheme === 'light' ? 'dark_mode' : 'light_mode' }}</mat-icon>
-    </button>
-  `,
+  templateUrl: './theme-toggle.component.html',
   styles: [`
     .theme-toggle-button {
       color: white;

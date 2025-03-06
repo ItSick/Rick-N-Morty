@@ -13,7 +13,7 @@ import { Character } from '../../models/character';
   styleUrl: './character-card.component.scss'
 })
 export class CharacterCardComponent {
-  @Input() character!: Character;
+  @Input() character!: Character; // ! means that the property is guaranteed to be set
   
   constructor(private router: Router) {}
   

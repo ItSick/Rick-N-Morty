@@ -69,8 +69,8 @@ export class HomeComponent implements OnInit {
     this.loadCharacters();
     
     this.nameFilter.valueChanges.pipe(
-      debounceTime(500),
-      distinctUntilChanged()
+      debounceTime(500),//Rxjs - waits for the user to stop typing for 500ms before sending a request.
+      distinctUntilChanged() //Rxjs - ensures that only changes in value trigger the callback function
     ).subscribe(() => {
       this.resetAndReload();
     });

@@ -5,9 +5,9 @@ import { Directive, ElementRef, EventEmitter, OnDestroy, OnInit, Output } from '
   standalone: true
 })
 export class InfiniteScrollDirective implements OnInit, OnDestroy {
-  @Output() scrolled = new EventEmitter<void>();
+  @Output() scrolled = new EventEmitter<void>(); //let a child component emit events
 
-  private observer: IntersectionObserver | undefined;
+  private observer: IntersectionObserver | undefined; //appear or disappear from the screen - the user’s visible area
   private scrollThreshold = 200; 
   private scrollCooldown = false;
   private cooldownTime = 1000; 
