@@ -12,34 +12,10 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 import { ApiService } from '../../services/api.service';
 import { LoadingIndicatorComponent } from '../../components/loading-indicator/loading-indicator.component';
+import { Character } from '../../models/character';
+import { Episode } from '../../models/episode';
+import { EpisodeResponse } from '../../models/episode-response';
 
-interface Episode {
-  id: number;
-  name: string;
-  air_date: string;
-  episode: string;
-  characters: string[];
-  url: string;
-  created: string;
-}
-
-interface EpisodesResponse {
-  info: {
-    count: number;
-    pages: number;
-    next: string | null;
-    prev: string | null;
-  };
-  results: Episode[];
-}
-
-interface Character {
-  id: number;
-  name: string;
-  status: string;
-  species: string;
-  image: string;
-}
 
 @Component({
   selector: 'app-episodes',
@@ -92,7 +68,7 @@ export class EpisodesComponent implements OnInit {
     this.episodesError = null;
     
     this.apiService.getAllEpisodes().subscribe({
-      next: (response: EpisodesResponse) => {
+      next: (response: EpisodeResponse) => {
         this.episodes = this.shuffleArray([...response.results]);
         this.isLoadingEpisodes = false;
       },
