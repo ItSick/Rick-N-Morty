@@ -1,0 +1,96 @@
+<div class="container">
+    <div *ngIf="isLoading" class="loading-container">
+      <mat-spinner></mat-spinner>
+      <p>Loading character details...</p>
+    </div>
+    
+    <div *ngIf="error" class="error-container">
+      <mat-icon color="warn">error</mat-icon>
+      <h2>{{ error }}</h2>
+      <button mat-raised-button color="primary" (click)="goBack()">Go Back</button>
+    </div>
+    
+    <div *ngIf="character && !isLoading" class="character-details">
+      <div class="back-button-container">
+        <button mat-button (click)="goBack()">
+          <mat-icon>arrow_back</mat-icon>
+          Back to Characters
+        </button>
+      </div>
+      
+      <div class="character-card">
+        <div class="character-header">
+          <div class="character-image">
+            <img [src]="character.image" [alt]="character.name">
+          </div>
+          <div class="character-info">
+            <h1>{{ character.name }}</h1>
+            
+            <div class="status-chip" [ngClass]="getStatusClass(character.status)">
+              <span class="status-dot"></span>
+              {{ character.status }}
+            </div>
+            
+            <div class="info-item">
+              <strong>Species:</strong> {{ character.species }}
+            </div>
+            
+            <div class="info-item" *ngIf="character.type">
+              <strong>Type:</strong> {{ character.type }}
+            </div>
+            
+            <div class="info-item">
+              <strong>Gender:</strong> {{ character.gender }}
+            </div>
+          </div>
+        </div>
+        
+        <mat-divider></mat-divider>
+        
+        <div class="character-section">
+          <h2>Origin</h2>
+          <div class="info-item">
+            <strong>Name:</strong> {{ character.origin.name }}
+          </div>
+        </div>
+        
+        <mat-divider></mat-divider>
+        
+        <div class="character-section">
+          <h2>Last Known Location</h2>
+          <div class="info-item">
+            <strong>Name:</strong> {{ character.location.name }}
+          </div>
+        </div>
+        
+        <mat-divider></mat-divider>
+        
+        <div class="character-section">
+          <h2>Episodes</h2>
+          <div class="episodes-list">
+            <div class="episode-count">
+              Appeared in {{ character.episode.length }} episode(s)
+            </div>
+            <p style="color: red;">Click the episode number to see the episode details as JSON</p>
+            <div class="episode-ids">
+              <div class="episode-chip" *ngFor="let episode of character.episode">
+                <a href="{{ episode }}" target="_blank">{{ getEpisodeNumber(episode) }}</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <mat-divider></mat-divider>
+        
+        <div class="character-section">
+          <h2>Additional Info</h2>
+          <div class="info-item">
+            <strong>ID:</strong> {{ character.id }}
+          </div>
+          <div class="info-item">
+            <strong>Created:</strong> {{ character.created | date:'medium' }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
